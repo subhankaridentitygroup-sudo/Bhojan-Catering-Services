@@ -50,9 +50,28 @@
     @media(prefers-reduced-motion:reduce){.services .container.is-ready{opacity:1}.services .container.is-visible{animation:none}}
     body *{font-family:"DM Sans",sans-serif !important}@media(max-width:760px){.brand img{width:64px;height:64px}}
     .back-to-top{position:fixed;right:24px;bottom:94px;z-index:10;display:grid;place-items:center;width:48px;height:48px;border:0;border-radius:50%;background:var(--wine);color:#fff;box-shadow:0 8px 18px rgba(42,10,11,.25);font-size:1.35rem;line-height:1;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .2s ease,visibility .2s ease,transform .2s ease}.back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}.back-to-top:hover,.back-to-top:focus-visible{background:var(--red);transform:translateY(-2px)}.back-to-top:focus-visible{outline:3px solid #fff;outline-offset:3px}@media(max-width:760px){.back-to-top{right:20px;bottom:82px;width:44px;height:44px}}
+    .opening-screen{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;background:radial-gradient(circle at center,rgba(218,155,72,.35) 0%,rgba(124,23,25,.92) 30%,rgba(42,10,11,.98) 100%);overflow:hidden;transition:opacity .8s ease,visibility .8s ease}.opening-screen.hidden{opacity:0;visibility:hidden}.opening-screen::before,.opening-screen::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.22);animation:openingPulse 2.6s ease-in-out infinite}.opening-screen::before{width:440px;height:440px}.opening-screen::after{width:620px;height:620px;animation-delay:.45s}.opening-contents{position:relative;display:grid;place-items:center;animation:openingRise 1.2s cubic-bezier(.2,.7,.2,1) both}.opening-logo{width:160px;height:160px;object-fit:contain;filter:drop-shadow(0 0 22px rgba(255,255,255,.18));border-radius:50%}@keyframes openingRise{0%{opacity:0;transform:translateY(18px) scale(.96)}30%{opacity:1}100%{opacity:1;transform:translateY(0) scale(1)}}@keyframes openingPulse{0%,100%{transform:scale(.96);opacity:0}50%{transform:scale(1.06);opacity:1}}
+    html.skip-splash .opening-screen{display:none}
   </style>
+  <script>
+    const splashParams = new URLSearchParams(location.search);
+    const splashRequested = splashParams.get('showSplash') === '1';
+    const splashSkipped = splashParams.get('skipSplash') === '1';
+    if ((document.referrer && !splashRequested) || splashSkipped) document.documentElement.classList.add('skip-splash');
+    if (splashRequested || splashSkipped) {
+      const cleanUrl = new URL(location.href);
+      cleanUrl.searchParams.delete('showSplash');
+      cleanUrl.searchParams.delete('skipSplash');
+      history.replaceState(null, '', cleanUrl);
+    }
+  </script>
 </head>
 <body>
+  <div class="opening-screen" aria-hidden="true">
+    <div class="opening-contents">
+      <img class="opening-logo" src="https://raw.githubusercontent.com/subhankaridentitygroup-sudo/Bhojan-Catering-Services/main/Assets/Bhojan%20New%20%20Logo.png" alt="Bhojan Catering logo" />
+    </div>
+  </div>
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
   <header><div class="container nav"><a class="brand" href="#home"><img src="D:\Bhojan Catering Services\assets\Bhojan New  Logo.png" alt="Bhojan Catering logo" /> Bhojan Catering</a><nav class="nav-links"><a href="#about">Our story</a><a href="#services">Services</a><a href="#occasions">Occasions</a><a class="nav-button" href="menu.html">Menu</a></nav><a class="nav-button call" href="tel:+919555508492">Call 95555 08492</a><details class="mobile-nav"><summary aria-label="Open navigation">&#9776;</summary><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="#about">Our story</a><a href="#services">Services</a><a href="#occasions">Occasions</a><a href="menu.html">Menu</a><a href="tel:+919555508492">Call us</a></nav></details></div></header>
@@ -66,6 +85,13 @@
   </main>
   <footer><div class="container"><div class="footer-top"><div><div class="footer-brand">Bhojan <span>Catering</span></div><p class="footer-copy">Thoughtful catering for celebrations, events and everyday gatherings in Bhubaneswar.</p></div><div class="contact"><small>Speak with our team</small><a href="tel:+919040663100">85949 99868</a><a href="tel:+919555508492">95555 08492</a></div></div><div class="footer-bottom"><span>© 2026 Bhojan Catering Services</span><span>Bhubaneswar, Odisha</span></div></div></footer>
   <script>
+    const openingScreen = document.querySelector('.opening-screen');
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        openingScreen?.classList.add('hidden');
+      }, 800);
+    });
+
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorRing = document.querySelector('.cursor-ring');
     let mouseX = window.innerWidth / 2;
@@ -210,4 +236,3 @@
   </script>
 </body>
 </html>
-
