@@ -11,7 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root{--wine:#7c1719;--red:#b51f24;--cream:#fff8ed;--paper:#f7eddb;--ink:#2a1612;--gold:#d59a42;--soft:#e7cda4}
-    *{box-sizing:border-box} html{scroll-behavior:smooth;overflow-x:hidden} body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden} img{display:block;max-width:100%} a{text-decoration:none;color:inherit}
+    *{box-sizing:border-box} html{scroll-behavior:smooth;overflow-x:hidden} body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden;cursor:none} img{display:block;max-width:100%} a{text-decoration:none;color:inherit} a,button,input,select,textarea,.service-card,.partner-card,.choice,.nav-button,.whatsapp-float,.back-to-top{cursor:none}
+    .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;transform:translate(-50%,-50%);z-index:99999;border-radius:50%}
+    .cursor-dot{width:10px;height:10px;background:var(--gold);box-shadow:0 0 18px rgba(213,154,66,.9)}
+    .cursor-ring{width:34px;height:34px;border:1.5px solid rgba(213,154,66,.95);background:rgba(213,154,66,.08);transition:width .18s ease,height .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}
+    .cursor-ring.is-active{width:52px;height:52px;border-color:rgba(181,31,36,.8);background:rgba(181,31,36,.1);box-shadow:0 0 18px rgba(181,31,36,.22)}
+    @media (pointer:coarse){body,a,button,input,select,textarea,.service-card,.partner-card,.choice,.nav-button,.whatsapp-float,.back-to-top{cursor:auto}.cursor-dot,.cursor-ring{display:none}}
     .container{width:min(1160px,calc(100% - 40px));margin:auto}.eyebrow{color:var(--gold);font-size:.73rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.button{display:inline-flex;align-items:center;gap:10px;padding:14px 23px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;transition:.2s}.button:hover{background:var(--wine);transform:translateY(-2px)}.button.green-hover:hover{background:#27834a;color:#fff}.button.light{background:#fff;color:var(--wine)}
     header{position:absolute;top:0;z-index:3;width:100%;color:#fff}.nav{height:88px;display:flex;align-items:center;justify-content:space-between;gap:25px}.brand{display:flex;align-items:center;gap:10px;font-family:"Playfair Display";font-weight:700;font-size:1.15rem}.brand img{width:80px;height:80px;object-fit:contain;border-radius:50%;background:#f2be6b}.nav-links{display:flex;gap:12px;font-size:.9rem;font-weight:600}.nav-links a,.nav-button{display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:600;border:1px solid rgba(255,255,255,.55);padding:10px 16px;border-radius:999px;transition:.2s}.nav-links a:hover,.nav-button:hover{background:rgba(255,255,255,.14);border-color:#fff}.nav .call{font-size:.9rem;background:var(--gold);border-color:var(--gold);color:var(--wine);box-shadow:0 5px 14px rgba(42,10,11,.18)}.nav .call:hover{background:#f2be6b;border-color:#f2be6b}.mobile-nav{display:none}.mobile-nav summary{list-style:none;cursor:pointer;border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:9px 13px;font-size:1.1rem;line-height:1}.mobile-nav summary::-webkit-details-marker{display:none}.mobile-nav-links{position:absolute;top:68px;right:20px;display:grid;min-width:180px;padding:8px;background:var(--wine);box-shadow:0 10px 24px rgba(42,10,11,.25)}.mobile-nav-links a{padding:12px 14px;color:#fff;border-bottom:1px solid rgba(255,255,255,.16)}.mobile-nav-links a:last-child{border-bottom:0}
     .hero{min-height:700px;position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#4b0c11 0%,#81171b 52%,#b51f24 100%)}.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.24;filter:saturate(.72) contrast(.9);pointer-events:none}.hero:before{content:"";position:absolute;width:620px;height:650px;border:1px solid rgba(255,210,152,.2);border-radius:50%;left:48%;top:-365px;box-shadow:0 0 0 60px rgba(255,210,152,.04),0 0 0 120px rgba(255,210,152,.04)}.hero:after{content:"";position:absolute;width:650px;height:650px;border:1px solid rgba(255,210,152,.2);border-radius:50%;right:-220px;bottom:-260px;box-shadow:0 0 0 60px rgba(255,210,152,.04),0 0 0 120px rgba(255,210,152,.04)}.hero-content{position:relative;z-index:1;padding:132px 0 100px;max-width:700px}.hero-proof{display:inline-block;margin-top:18px;color:#f2be6b;font-size:.86rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.hero h1{font-family:"Playfair Display";font-size:clamp(3.25rem,7vw,6rem);line-height:.98;letter-spacing:-.055em;margin:14px 0 22px}.hero h1 em{color:#f2be6b;font-style:italic}.hero p{font-size:1.08rem;line-height:1.7;max-width:530px;color:#f8e9d7;margin:0 0 33px}.hero-actions{display:flex;gap:15px;flex-wrap:wrap}.hero-note{margin-top:70px;display:flex;gap:35px;color:#f9e6c8;font-size:.88rem}.hero-note b{display:block;color:#fff;font-size:1.05rem;margin-bottom:2px}@media(prefers-reduced-motion:reduce){.hero-video{display:none}}
@@ -46,6 +51,8 @@
   </style>
 </head>
 <body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
   <header><div class="container nav"><a class="brand" href="#home"><img src="D:\Bhojan Catering Services\assets\Bhojan New  Logo.png" alt="Bhojan Catering logo" /> Bhojan Catering</a><nav class="nav-links"><a href="#about">Our story</a><a href="#services">Services</a><a href="#occasions">Occasions</a><a class="nav-button" href="menu.html">Menu</a></nav><a class="nav-button call" href="tel:+919555508492">Call 95555 08492</a><details class="mobile-nav"><summary aria-label="Open navigation">&#9776;</summary><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="#about">Our story</a><a href="#services">Services</a><a href="#occasions">Occasions</a><a href="menu.html">Menu</a><a href="tel:+919555508492">Call us</a></nav></details></div></header>
   <main>
     <section class="hero" id="home"><div class="container hero-content"><div class="eyebrow">✦ Bhubaneswar · Odisha</div><div class="hero-proof">✦ No. 1 Catering Service in Odisha</div><h1>Food made for <em>your</em> moments.</h1><p>From intimate family celebrations to memorable corporate gatherings, Bhojan brings warm hospitality and deliciously crafted food to every table.</p><div class="hero-actions"><a class="button green-hover" href="#menu">Plan your event <span>→</span></a><a class="button light" href="#services">Explore services</a></div><div class="hero-note"><div><b>Every occasion</b>Thoughtfully catered</div><div><b>Made with care</b>Served with warmth</div></div></div></section>
@@ -57,6 +64,39 @@
   </main>
   <footer><div class="container"><div class="footer-top"><div><div class="footer-brand">Bhojan <span>Catering</span></div><p class="footer-copy">Thoughtful catering for celebrations, events and everyday gatherings in Bhubaneswar.</p></div><div class="contact"><small>Speak with our team</small><a href="tel:+919040663100">85949 99868</a><a href="tel:+919555508492">95555 08492</a></div></div><div class="footer-bottom"><span>© 2026 Bhojan Catering Services</span><span>Bhubaneswar, Odisha</span></div></div></footer>
   <script>
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorRing = document.querySelector('.cursor-ring');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    const moveCursor = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    };
+
+    document.addEventListener('pointermove', moveCursor);
+    document.addEventListener('pointerdown', () => cursorRing.classList.add('is-active'));
+    document.addEventListener('pointerup', () => cursorRing.classList.remove('is-active'));
+
+    const renderCursor = () => {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      cursorRing.style.left = `${ringX}px`;
+      cursorRing.style.top = `${ringY}px`;
+      requestAnimationFrame(renderCursor);
+    };
+    requestAnimationFrame(renderCursor);
+
+    const interactiveElements = document.querySelectorAll('a, button, input, select, textarea, .service-card, .partner-card, .choice, .button, .nav-button, .whatsapp-float, .back-to-top, summary');
+    interactiveElements.forEach((element) => {
+      element.addEventListener('mouseenter', () => cursorRing.classList.add('is-active'));
+      element.addEventListener('mouseleave', () => cursorRing.classList.remove('is-active'));
+    });
+
     const primaryPhone = '+919555508492';
     document.body.insertAdjacentHTML('beforeend', '<a class="whatsapp-float" href="https://wa.me/919555508492" target="_blank" rel="noopener noreferrer" aria-label="Chat with Bhojan Catering on WhatsApp"><img src="https://cdn.simpleicons.org/whatsapp/FFFFFF" alt="WhatsApp"></a>');
     document.querySelector('.nav .call').insertAdjacentHTML('beforebegin', '<nav class="header-social-links" aria-label="Social media"><a href="https://www.instagram.com/bhojancateringservicesbbsr?stkn=MXB5azVuMTA0ZW40YQ==" target="_blank" rel="noopener noreferrer" aria-label="Follow Bhojan Catering on Instagram"><img src="https://cdn.simpleicons.org/instagram/FFFFFF" alt="Instagram"></a><a href="https://www.linkedin.com/company/bhojan-catering-services/" target="_blank" rel="noopener noreferrer" aria-label="Visit Bhojan Catering on LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/linkedin.svg" alt="LinkedIn"></a></nav>');

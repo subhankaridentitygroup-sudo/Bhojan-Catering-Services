@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root{--wine:#7c1719;--red:#b51f24;--cream:#fff8ed;--paper:#f7eddb;--ink:#2a1612;--gold:#d59a42;--soft:#e7cda4}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif}a{text-decoration:none;color:inherit}.container{width:min(1100px,calc(100% - 40px));margin:auto}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;cursor:none}a{text-decoration:none;color:inherit}a,button,input,select,textarea,.nav-button,.nav-links a,.download-button,.call,.whatsapp-float,.back-to-top,.mobile-nav summary,.menu-category,.download-card{cursor:none}.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;transform:translate(-50%,-50%);z-index:99999;border-radius:50%}.cursor-dot{width:10px;height:10px;background:var(--gold);box-shadow:0 0 18px rgba(213,154,66,.9)}.cursor-ring{width:34px;height:34px;border:1.5px solid rgba(213,154,66,.95);background:rgba(213,154,66,.08);transition:width .18s ease,height .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}.cursor-ring.is-active{width:52px;height:52px;border-color:rgba(181,31,36,.8);background:rgba(181,31,36,.1);box-shadow:0 0 18px rgba(181,31,36,.22)}@media (pointer:coarse){body,a,button,input,select,textarea,.nav-button,.nav-links a,.download-button,.call,.whatsapp-float,.back-to-top,.mobile-nav summary,.menu-category,.download-card{cursor:auto}.cursor-dot,.cursor-ring{display:none}}.container{width:min(1100px,calc(100% - 40px));margin:auto}
     header{background:var(--wine);color:#fff}.nav{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:25px}.brand{display:flex;align-items:center;gap:10px;font:700 1.15rem "Playfair Display"}.brand img{width:66px;height:66px;object-fit:contain;border-radius:50%;background:#f2be6b}.nav-links{display:flex;gap:12px;font-size:.9rem;font-weight:600}.nav-links a,.nav-button{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:10px 16px;font-size:.9rem;font-weight:600;transition:.2s}.nav-links a:hover,.nav-button:hover{background:rgba(255,255,255,.14);border-color:#fff}.call{font-size:.9rem;background:var(--gold);border-color:var(--gold);color:var(--wine);box-shadow:0 5px 14px rgba(42,10,11,.18);white-space:nowrap}.call:hover{background:#f2be6b;border-color:#f2be6b}
     .hero{position:relative;isolation:isolate;overflow:hidden;padding:150px 0 70px;background:linear-gradient(135deg,#4b0c11,#b51f24);color:#fff}.hero::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(42,10,11,.56)}.hero-video{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;opacity:.72;filter:saturate(.82) contrast(.92)}.hero .container{position:relative;z-index:2}.eyebrow{color:#f2be6b;font-size:.73rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.hero h1{margin:13px 0 16px;font:700 clamp(2.8rem,7vw,5.4rem)/1 "Playfair Display";letter-spacing:-.04em}.hero p{max-width:530px;margin:0;color:#f8e9d7;line-height:1.7}
     .menu-section{padding:70px 0}.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.menu-category{padding:26px;background:#fff;border-top:4px solid var(--gold);box-shadow:0 12px 25px rgba(78,39,17,.08)}.menu-category h2{margin:0 0 18px;color:var(--wine);font:700 1.65rem "Playfair Display"}.food-list{list-style:none;margin:0;padding:0}.food-list li{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid #ead8bd;color:#5d4035}.food-list li:last-child{border-bottom:0}.food-list span{color:var(--red);font-weight:700;white-space:nowrap}.note{margin:30px 0 0;color:#76594a;font-size:.9rem;line-height:1.6}.downloads{padding:70px 0;background:#f1dfc4}.downloads h2{margin:0 0 12px;color:var(--wine);font:700 clamp(2rem,4vw,3.4rem) "Playfair Display"}.downloads-intro{margin:0 0 26px;color:#694b3c;line-height:1.7}.download-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.download-card{display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:24px;background:#fff;border-top:4px solid var(--gold);box-shadow:0 12px 25px rgba(78,39,17,.08)}.download-card h3{margin:0;color:var(--wine);font:700 1.2rem "Playfair Display"}.download-card p{margin:8px 0 0;color:#76594a;font-size:.86rem;line-height:1.5}.download-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 15px;border-radius:999px;background:var(--wine);color:#fff;font-size:.88rem;font-weight:700}.download-button:hover{background:var(--red)}.cta{padding:65px 0;background:var(--gold);text-align:center}.cta h2{margin:0 0 20px;font:700 clamp(2rem,4vw,3.4rem) "Playfair Display"}.button{display:inline-flex;padding:14px 22px;border-radius:999px;background:var(--wine);color:#fff;font-weight:700}.button:hover{background:#4b0c11}
@@ -21,6 +21,8 @@
   </style>
 </head>
 <body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
   <header><div class="container nav"><a class="brand" href="index.html#home"><img src="https://raw.githubusercontent.com/subhankaridentitygroup-sudo/Bhojan-Catering-Services/main/Assets/Bhojan%20New%20%20Logo.png" alt="Bhojan Catering logo" /> Bhojan Catering</a><nav class="nav-links" aria-label="Main navigation"><a href="index.html#about">Our story</a><a href="index.html#services">Services</a><a href="index.html#occasions">Occasions</a><a class="nav-button" href="index.html#menu">Menu</a></nav><nav class="header-social-links" aria-label="Social media"><a href="https://www.instagram.com/bhojancateringservicesbbsr?stkn=MXB5azVuMTA0ZW40YQ==" target="_blank" rel="noopener noreferrer" aria-label="Follow Bhojan Catering on Instagram"><img src="https://cdn.simpleicons.org/instagram/FFFFFF" alt="Instagram"></a><a href="https://www.linkedin.com/company/bhojan-catering-services/" target="_blank" rel="noopener noreferrer" aria-label="Visit Bhojan Catering on LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/linkedin.svg" alt="LinkedIn"></a></nav><a class="nav-button call" href="tel:+919583908179">Call 95555 08492</a><details class="mobile-nav"><summary aria-label="Open navigation">&#9776;</summary><nav class="mobile-nav-links" aria-label="Mobile navigation"><a href="index.html#about">Our story</a><a href="index.html#services">Services</a><a href="index.html#occasions">Occasions</a><a href="index.html#menu">Menu</a><a href="tel:+919583908179">Call us</a></nav></details></div></header>
   <main>
     <section class="hero"><video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="https://raw.githubusercontent.com/subhankaridentitygroup-sudo/Bhojan-Catering-Services/main/Assets/Food%20Promo%20Video%20-%20Motion%20Graphics%20Video%20-%20Aytac%20Kamilli%20%281080p%2C%20h264%29.mp4" type="video/mp4" /></video><div class="container"><div class="eyebrow">Bhojan Catering Services</div><h1>Our food menu.</h1><p>Choose from thoughtfully prepared favourites for celebrations, family gatherings, corporate meals and every special occasion.</p></div></section>
@@ -38,6 +40,39 @@
   <a class="whatsapp-float" href="https://wa.me/919583908179" target="_blank" rel="noopener noreferrer" aria-label="Chat with Bhojan Catering on WhatsApp"><img src="https://cdn.simpleicons.org/whatsapp/FFFFFF" alt="WhatsApp"></a><footer><div class="container"><div class="footer-top"><div><div class="footer-brand">Bhojan <span>Catering</span></div><p class="footer-copy">Thoughtful catering for celebrations, events and everyday gatherings in Bhubaneswar.</p><nav class="social-links" aria-label="Social media"><a href="https://www.instagram.com/bhojancateringservicesbbsr?stkn=MXB5azVuMTA0ZW40YQ==" target="_blank" rel="noopener noreferrer" aria-label="Follow Bhojan Catering on Instagram"><img src="https://cdn.simpleicons.org/instagram/FFFFFF" alt="Instagram"></a><a href="https://www.linkedin.com/company/bhojan-catering-services/" target="_blank" rel="noopener noreferrer" aria-label="Visit Bhojan Catering on LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/linkedin.svg" alt="LinkedIn"></a></nav></div><div class="contact"><small>Speak with our team</small><a href="tel:+919583908179">95555 08492</a><a href="tel:+919040663100">85949 99868</a><address class="footer-address">Mahalaxmi Vihar, Plot No. 779/1750, Lane Number-6, Near Neha Palace, Durga Madhab Nagar, Bharatpur, Bhubaneswar, Odisha 751029</address></div></div><div class="footer-bottom"><span>© 2026 Bhojan Catering Services</span><span>Bhubaneswar, Odisha</span></div></div></footer>
   <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
   <script>
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorRing = document.querySelector('.cursor-ring');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    const moveCursor = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    };
+
+    document.addEventListener('pointermove', moveCursor);
+    document.addEventListener('pointerdown', () => cursorRing.classList.add('is-active'));
+    document.addEventListener('pointerup', () => cursorRing.classList.remove('is-active'));
+
+    const renderCursor = () => {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      cursorRing.style.left = `${ringX}px`;
+      cursorRing.style.top = `${ringY}px`;
+      requestAnimationFrame(renderCursor);
+    };
+    requestAnimationFrame(renderCursor);
+
+    const interactiveElements = document.querySelectorAll('a, button, input, select, textarea, .nav-button, .nav-links a, .download-button, .call, .whatsapp-float, .back-to-top, .mobile-nav summary, .menu-category, .download-card');
+    interactiveElements.forEach((element) => {
+      element.addEventListener('mouseenter', () => cursorRing.classList.add('is-active'));
+      element.addEventListener('mouseleave', () => cursorRing.classList.remove('is-active'));
+    });
+
     const backToTop = document.querySelector('.back-to-top');
     window.addEventListener('scroll', () => {
       backToTop.classList.toggle('is-visible', window.scrollY > 300);
