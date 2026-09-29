@@ -55,12 +55,10 @@
   </style>
   <script>
     const splashParams = new URLSearchParams(location.search);
-    const splashRequested = splashParams.get('showSplash') === '1';
     const splashSkipped = splashParams.get('skipSplash') === '1';
-    if ((document.referrer && !splashRequested) || splashSkipped) document.documentElement.classList.add('skip-splash');
-    if (splashRequested || splashSkipped) {
+    if (splashSkipped) document.documentElement.classList.add('skip-splash');
+    if (splashSkipped) {
       const cleanUrl = new URL(location.href);
-      cleanUrl.searchParams.delete('showSplash');
       cleanUrl.searchParams.delete('skipSplash');
       history.replaceState(null, '', cleanUrl);
     }
