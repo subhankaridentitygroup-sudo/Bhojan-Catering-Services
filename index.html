@@ -88,13 +88,7 @@
     };
 
     if (!document.documentElement.classList.contains('skip-splash')) {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', hideOpeningScreen, { once: true });
-      } else {
-        hideOpeningScreen();
-      }
-      window.addEventListener('load', hideOpeningScreen, { once: true });
-      setTimeout(hideOpeningScreen, 200);
+      setTimeout(hideOpeningScreen, 500);
     }
 
     const primaryPhone = '+919555508492';
